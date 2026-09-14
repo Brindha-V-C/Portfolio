@@ -1,0 +1,522 @@
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Cloud,
+  Code2,
+  ExternalLink,
+  Github,
+  Linkedin,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Server,
+  Trophy,
+} from "lucide-react";
+
+const skills = [
+  {
+    title: "Cloud",
+    icon: Cloud,
+    items: [
+      "Microsoft Azure",
+      "Virtual Machine",
+      "Storage Services",
+      "App Service",
+      "ACR",
+      "Load Balancer",
+      "Azure Functions",
+    ],
+  },
+  {
+    title: "DevOps & CI/CD",
+    icon: Server,
+    items: [
+      "Docker",
+      "Jenkins",
+      "Azure DevOps",
+      "GitHub Actions",
+      "Git",
+      "CI/CD",
+      "GitOps",
+    ],
+  },
+  {
+    title: "Development",
+    icon: Code2,
+    items: ["Python", "Django", "Shell Scripting"],
+  },
+  {
+    title: "Containers",
+    icon: Server,
+    items: ["Docker", "Kubernetes", "ArgoCD"],
+  },
+];
+
+const projects = [
+  {
+    title: "Secure Cloud File Vault",
+    description:
+      "A cloud-based Django file management application using Azure Blob Storage and Queue Storage, deployed on an Azure VM with Docker and Azure Container Registry.",
+    technologies: ["Python", "Django", "Azure", "Docker", "ACR"],
+    github: "https://github.com/Brindha-V-C/Secure-Cloud-File-Vault",
+  },
+  {
+    title: "Spring Boot App CI/CD",
+    description:
+      "A multi-stage Jenkins pipeline that automates build, test, package, and deployment for a Spring Boot application, with Docker-based deployment.",
+    technologies: ["Git", "Jenkins", "Docker", "Spring Boot"],
+    github: "https://github.com/Brindha-V-C/springboot-app-cicd",
+  },
+  {
+    title: "Azure DevOps Automation",
+    description:
+      "A CI/CD workflow for a multi-microservice voting application using Azure Pipelines, Docker, ACR, Kubernetes, and GitOps-based ArgoCD deployments.",
+    technologies: [
+      "Azure Pipelines",
+      "Docker",
+      "ACR",
+      "Kubernetes",
+      "ArgoCD",
+    ],
+    github: "https://github.com/Brindha-V-C/Azure-DevOps",
+  },
+];
+
+const certifications = [
+  {
+    title: "Microsoft Certified: Azure Fundamentals",
+    issuer: "Microsoft",
+    credential:
+      "https://drive.google.com/file/d/1QHkV7Q36ce1BEATfoHqISJWMI2iIHF_n/view?usp=sharing",
+  },
+  {
+    title: "NDG - Linux Unhatched",
+    issuer: "Cisco Networking Academy",
+    credential:
+      "https://drive.google.com/file/d/11sWVfg_VKDQ1P84VnnUXoAUjmBVFab0w/view?usp=sharing",
+  },
+  {
+    title: "Cloud Computing",
+    issuer: "NPTEL",
+    credential:
+      "https://drive.google.com/file/d/1qwMF3lE05LpX9KTDvFHsq0OqdgLLDN3M/view?usp=sharing",
+  },
+  {
+    title: "DevOps Support Administrator",
+    issuer: "Infosys Springboard",
+    credential:
+      "https://drive.google.com/file/d/1Ali4BafMaW4iFzAfnNCc_wwSj46Pp4NN/view?usp=sharing",
+  },
+];
+
+export default function Portfolio() {
+  return (
+    <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
+      <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/90 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <a href="#home" className="text-lg font-bold tracking-tight">
+            Brindha V C<span className="text-sky-600"></span>
+          </a>
+
+          <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
+            <a href="#about" className="transition hover:text-sky-600">
+              About
+            </a>
+            <a href="#experience" className="transition hover:text-sky-600">
+              Experience
+            </a>
+            <a href="#skills" className="transition hover:text-sky-600">
+              Skills
+            </a>
+            <a href="#projects" className="transition hover:text-sky-600">
+              Projects
+            </a>
+            <a href="#certifications" className="transition hover:text-sky-600">
+              Certifications
+            </a>
+            <a href="#contact" className="transition hover:text-sky-600">
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <section id="home" className="mx-auto max-w-6xl px-6 pb-24 pt-24 md:pt-32">
+        <div className="max-w-4xl">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
+            <Cloud size={16} />
+            Cloud & DevOps
+          </p>
+
+          <h1 className="text-5xl font-bold tracking-tight text-slate-950 md:text-7xl">
+            Hi, I&apos;m Brindha V C
+          </h1>
+
+          <p className="mt-6 max-w-3xl text-2xl font-medium leading-relaxed text-slate-700 md:text-3xl">
+            Computer Science Graduate building reliable cloud and DevOps
+            solutions.
+          </p>
+
+          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-500 md:text-lg">
+            I work with Azure, CI/CD, Docker, Python, and modern deployment
+            practices to build scalable and dependable software systems.
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              View Projects
+              <ArrowUpRight size={17} />
+            </a>
+
+            <a
+              href="https://drive.google.com/file/d/1PWwDfMi7NMq6jP5EnXYGzsNFGcGHxQka/view?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400"
+            >
+              View Resume
+              <ExternalLink size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-[1.5fr_1fr]">
+          <div>
+            <SectionHeading
+              eyebrow="About"
+              title="A little about me"
+            />
+            <p className="mt-6 max-w-2xl leading-8 text-slate-600">
+              Computer Science graduate with a strong foundation in cloud-based
+              systems and DevOps practices. Hands-on experience with Azure,
+              CI/CD, Docker, Python, and backend development through academic
+              and project work.
+            </p>
+            <p className="mt-4 max-w-2xl leading-8 text-slate-600">
+              I&apos;m interested in automation, deployment strategy, release
+              management, reliability, and scalable cloud delivery.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-[#f7f8fa] p-6">
+            <GraduationCap className="text-sky-600" size={25} />
+            <p className="mt-5 text-sm font-semibold uppercase tracking-wider text-slate-500">
+              Education
+            </p>
+            <h3 className="mt-2 text-xl font-bold">
+              B.E. — Computer Science
+            </h3>
+            <p className="mt-2 text-slate-600">
+              Velalar College of Engineering and Technology
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-500">
+              <span>Nov 2022 – May 2026</span>
+              <span>•</span>
+              <span>CGPA: 9.43</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" className="mx-auto max-w-6xl px-6 py-20">
+        <SectionHeading
+          eyebrow="Experience"
+          title="Internship"
+        />
+
+        <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div className="flex flex-col justify-between gap-4 md:flex-row">
+            <div className="flex gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                <BriefcaseBusiness size={21} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">Python Developer Intern</h3>
+                <p className="mt-1 text-slate-500">Infosys Springboard · Remote</p>
+              </div>
+            </div>
+            <p className="text-sm font-medium text-slate-500">
+              Nov 2025 – Jan 2026
+            </p>
+          </div>
+
+          <ul className="mt-7 space-y-3 pl-5 text-sm leading-7 text-slate-600">
+            <li>
+              Directed ML strategy backtesting for historical time-series
+              trading models and documented engineering outcomes.
+            </li>
+            <li>
+              Architected FastAPI backend APIs for dashboard systems and
+              strengthened software integration and service implementation.
+            </li>
+            <li>
+              Partnered on code reviews and troubleshooting to improve testing,
+              security, and repository maintenance.
+            </li>
+            <li>
+              Supported sprint planning and Agile activities by coordinating
+              task updates and delivery responsibilities.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="skills" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <SectionHeading
+            eyebrow="Technical Skills"
+            title="Cloud, DevOps & Backend Development"
+          />
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {skills.map((skill) => {
+              const Icon = skill.icon;
+
+              return (
+                <div
+                  key={skill.title}
+                  className="rounded-2xl border border-slate-200 bg-[#f7f8fa] p-6 transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-sm"
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon size={21} className="text-sky-600" />
+                    <h3 className="text-base font-bold uppercase tracking-wide">
+                      {skill.title}
+                    </h3>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {skill.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
+        <SectionHeading
+          eyebrow="Projects"
+          title="Things I've Built"
+        />
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <article
+              key={project.title}
+              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="flex items-start justify-between">
+                <span className="text-sm font-bold text-sky-600">
+                  0{index + 1}
+                </span>
+                <Server size={20} className="text-slate-400" />
+              </div>
+
+              <h3 className="mt-8 text-xl font-bold">{project.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                {project.description}
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-slate-800 transition hover:text-sky-600"
+              >
+                <Github size={17} />
+                View on GitHub
+                <ExternalLink size={14} />
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-7 text-center">
+          <Github className="mx-auto text-slate-500" size={25} />
+          <h3 className="mt-3 font-bold">More projects on GitHub</h3>
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">
+            Explore my GitHub profile for
+            additional projects, experiments, and code.
+          </p>
+          <a
+            href="https://github.com/Brindha-V-C"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold transition hover:border-slate-400"
+          >
+            Explore GitHub
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </section>
+
+      <section id="certifications" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <SectionHeading
+            eyebrow="Certifications"
+            title="Learning & credentials"
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {certifications.map((cert) => (
+              <a
+                key={cert.title}
+                href={cert.credential}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-[#f7f8fa] p-6 transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-sm"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                  <Cloud size={19} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold">{cert.title}</h3>
+                  <p className="mt-1 text-sm text-slate-500">{cert.issuer}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600">
+                    View Credential
+                    <ExternalLink
+                      size={14}
+                      className="transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <SectionHeading
+          eyebrow="Achievements"
+          title="A few highlights"
+        />
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <Achievement
+            title="Animate 2024 — IIT Bombay"
+            description="Created a 2D animated video highlighting India’s advancements in navigation and received a consolation prize."
+          />
+          <Achievement
+            title="Dark Patterns Buster Hackathon — IIT BHU"
+            description="Finalist for designing a browser-extension architecture detecting 10+ dark patterns and helping safeguard over 2,000 users from potential scams."
+          />
+        </div>
+      </section>
+
+      <section id="contact" className="border-t border-slate-200 bg-slate-950 text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-400">
+              Contact
+            </p>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Let&apos;s build something.
+            </h2>
+            <p className="mt-5 leading-7 text-slate-400">
+              I&apos;m open to opportunities involving cloud, DevOps, backend
+              development, and automation.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a
+              href="mailto:brindhavc15@gmail.com"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+            >
+              <Mail size={17} />
+              Email Me
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/brindha-v-c"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:border-slate-500"
+            >
+              <Linkedin size={17} />
+              LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/Brindha-V-C"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:border-slate-500"
+            >
+              <Github size={17} />
+              GitHub
+            </a>
+          </div>
+
+          <div className="mt-16 flex flex-col gap-3 border-t border-slate-800 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+            <span>© {new Date().getFullYear()} Brindha V C</span>
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={15} />
+              Tamil Nadu, India
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
+  return (
+    <div>
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-600">
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
+function Achievement({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <Trophy size={22} className="text-sky-600" />
+      <h3 className="mt-5 font-bold">{title}</h3>
+      <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+    </div>
+  );
+}
