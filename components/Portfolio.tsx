@@ -122,7 +122,7 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f7f8fa] text-slate-900">
-      <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
           <a
             href="#home"
