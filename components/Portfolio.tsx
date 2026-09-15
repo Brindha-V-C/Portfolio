@@ -67,6 +67,7 @@ const projects = [
       "A cloud-based Django file management application using Azure Blob Storage and Queue Storage, deployed on an Azure VM with Docker and Azure Container Registry.",
     technologies: ["Python", "Django", "Azure", "Docker", "ACR"],
     github: "https://github.com/Brindha-V-C/Secure-Cloud-File-Vault",
+    caseStudy: "/projects/secure-cloud-vault",
   },
   {
     title: "Spring Boot App CI/CD",
@@ -86,7 +87,8 @@ const projects = [
       "Kubernetes",
       "ArgoCD",
     ],
-    github: "https://github.com/Brindha-V-C/Azure-DevOps",
+    github: "https://github.com/Brindha-V-C/Azure-Devops",
+    caseStudy: "/projects/azure-devops-automation",
   },
 ];
 
@@ -341,7 +343,7 @@ export default function Portfolio() {
       <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
         <SectionHeading
           eyebrow="Projects"
-          title="Selected work"
+          title="Featured Projects"
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -373,16 +375,26 @@ export default function Portfolio() {
                 ))}
               </div>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-slate-800 transition hover:text-sky-600"
-              >
-                <Github size={17} />
-                View on GitHub
-                <ExternalLink size={14} />
-              </a>
+              {project.caseStudy ? (
+                <a
+                  href={project.caseStudy}
+                  className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-slate-800 transition hover:text-sky-600"
+                >
+                  View Project
+                  <ArrowUpRight size={16} />
+                </a>
+              ) : (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-slate-800 transition hover:text-sky-600"
+                >
+                  <Github size={17} />
+                  View on GitHub
+                  <ExternalLink size={14} />
+                </a>
+              )}
             </article>
           ))}
         </div>
