@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -9,9 +11,13 @@ import {
   GraduationCap,
   Mail,
   MapPin,
+  Menu,
+  X,
   Server,
   Trophy,
 } from "lucide-react";
+
+import { useState } from "react";
 
 const skills = [
   {
@@ -19,9 +25,11 @@ const skills = [
     icon: Cloud,
     items: [
       "Microsoft Azure",
-      "Virtual Machine",
-      "Storage Services",
-      "App Service",
+      "VM",
+      "Blob Storage",
+      "Queue Storage",
+      "VNet",
+      "NSG",
       "ACR",
       "Load Balancer",
       "Azure Functions",
@@ -65,7 +73,7 @@ const projects = [
     description:
       "A multi-stage Jenkins pipeline that automates build, test, package, and deployment for a Spring Boot application, with Docker-based deployment.",
     technologies: ["Git", "Jenkins", "Docker", "Spring Boot"],
-    github: "https://github.com/Brindha-V-C/springboot-app-cicd",
+    github: "https://github.com/Brindha-V-C/springboot-App-cicd",
   },
   {
     title: "Azure DevOps Automation",
@@ -110,62 +118,86 @@ const certifications = [
 ];
 
 export default function Portfolio() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
-      <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#home" className="text-lg font-bold tracking-tight">
+    <main className="min-h-screen overflow-x-hidden bg-[#f7f8fa] text-slate-900">
+      <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
+          <a
+            href="#home"
+            onClick={() => setMenuOpen(false)}
+            className="whitespace-nowrap text-lg font-bold tracking-tight text-slate-950 sm:text-xl"
+          >
             Brindha V C<span className="text-sky-600"></span>
           </a>
 
           <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
-            <a href="#about" className="transition hover:text-sky-600">
-              About
-            </a>
-            <a href="#experience" className="transition hover:text-sky-600">
-              Experience
-            </a>
-            <a href="#skills" className="transition hover:text-sky-600">
-              Skills
-            </a>
-            <a href="#projects" className="transition hover:text-sky-600">
-              Projects
-            </a>
-            <a href="#certifications" className="transition hover:text-sky-600">
-              Certifications
-            </a>
-            <a href="#contact" className="transition hover:text-sky-600">
-              Contact
-            </a>
+            <a href="#about" className="transition hover:text-sky-600">About</a>
+            <a href="#experience" className="transition hover:text-sky-600">Experience</a>
+            <a href="#skills" className="transition hover:text-sky-600">Skills</a>
+            <a href="#projects" className="transition hover:text-sky-600">Projects</a>
+            <a href="#certifications" className="transition hover:text-sky-600">Certifications</a>
+            <a href="#contact" className="transition hover:text-sky-600">Contact</a>
           </div>
+
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="rounded-lg p-2 text-slate-800 transition hover:bg-slate-200 md:hidden"
+          >
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
+
+        {menuOpen && (
+          <div className="border-t border-slate-200 bg-white px-5 py-2 md:hidden">
+            <div className="mx-auto flex max-w-6xl flex-col">
+              {[
+                ["About", "#about"],
+                ["Experience", "#experience"],
+                ["Skills", "#skills"],
+                ["Projects", "#projects"],
+                ["Certifications", "#certifications"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="border-b border-slate-100 py-3 text-sm font-medium text-slate-700 last:border-b-0 hover:text-sky-600"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
-      <section id="home" className="mx-auto max-w-6xl px-6 pb-24 pt-24 md:pt-32">
+      <section id="home" className="mx-auto max-w-6xl px-5 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-24 md:pt-32">
         <div className="max-w-4xl">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
-            <Cloud size={16} />
-            Cloud & DevOps
-          </p>
 
-          <h1 className="text-5xl font-bold tracking-tight text-slate-950 md:text-7xl">
+          <h1 className="whitespace-nowrap text-[2.15rem] font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
             Hi, I&apos;m Brindha V C
           </h1>
 
-          <p className="mt-6 max-w-3xl text-2xl font-medium leading-relaxed text-slate-700 md:text-3xl">
+          <p className="mt-6 max-w-3xl text-[1.45rem] font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-relaxed md:text-3xl">
             Computer Science Graduate building reliable cloud and DevOps
             solutions.
           </p>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-500 md:text-lg">
+          <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 text-slate-500 sm:mt-6 sm:text-base md:text-lg">
             I work with Azure, CI/CD, Docker, Python, and modern deployment
             practices to build scalable and dependable software systems.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
             >
               View Projects
               <ArrowUpRight size={17} />
@@ -175,7 +207,7 @@ export default function Portfolio() {
               href="https://drive.google.com/file/d/1PWwDfMi7NMq6jP5EnXYGzsNFGcGHxQka/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400 sm:w-auto"
             >
               View Resume
               <ExternalLink size={16} />
@@ -309,7 +341,7 @@ export default function Portfolio() {
       <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
         <SectionHeading
           eyebrow="Projects"
-          title="Things I've Built"
+          title="Selected work"
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -359,7 +391,7 @@ export default function Portfolio() {
           <Github className="mx-auto text-slate-500" size={25} />
           <h3 className="mt-3 font-bold">More projects on GitHub</h3>
           <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">
-            Explore my GitHub profile for
+            These are my three featured projects. Explore my GitHub profile for
             additional projects, experiments, and code.
           </p>
           <a
