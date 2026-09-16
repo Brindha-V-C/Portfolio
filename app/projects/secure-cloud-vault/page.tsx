@@ -440,6 +440,41 @@ export default function SecureCloudFileVaultPage() {
         </div>
       </section>
 
+      <section className="border-t border-slate-200 bg-slate-950 text-white">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-400">
+                Source
+              </p>
+              <h2 className="mt-3 text-2xl font-bold">
+                Explore the implementation
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                View the pipelines, helper scripts, README, and project
+                history on GitHub.
+              </p>
+            </div>
+
+            <a
+              href="https://github.com/Brindha-V-C/Secure-Cloud-File-Vault"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+            >
+              <Github size={17} />
+              GitHub Repository
+              <ArrowUpRight size={15} />
+            </a>
+          </div>
+
+          <div className="mt-10 flex items-center gap-2 text-sm text-slate-500">
+            <CheckCircle2 size={16} className="text-sky-400" />
+            Cloud file management, Azure storage, queue processing, and container deployment implemented
+          </div>
+        </div>
+      </section>
+
       {selectedImage && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
