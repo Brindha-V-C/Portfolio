@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -6,7 +8,10 @@ import {
   Github,
   Layers3,
   Server,
+  X,
 } from "lucide-react";
+
+import { useEffect, useState } from "react";
 
 const screenshots = [
   {
@@ -26,6 +31,15 @@ const screenshots = [
   },
 ];
 
+const pipelineSteps = [
+  "Checkout the source code",
+  "Build the Docker image for each service",
+  "Run configured tests",
+  "Tag the image using the build ID or another release tag",
+  "Push the image to a container registry",
+  "Update Kubernetes image tags when manifest updates are enabled",
+];
+
 const stack = [
   "Azure DevOps Pipelines",
   "Docker",
@@ -37,6 +51,20 @@ const stack = [
 ];
 
 export default function AzureDevOpsAutomationPage() {
+  const [selectedImage, setSelectedImage] = useState<(typeof screenshots)[number] | null>(null);
+
+  useEffect(() => {
+    if (!selectedImage) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
   return (
     <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950">
@@ -157,145 +185,45 @@ export default function AzureDevOpsAutomationPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-600">
           Workflow
         </p>
-
-        <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-          CI/CD Pipeline &amp; GitOps Flow
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
+          CI/CD pipeline
         </h2>
 
-        <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
-          Here’s how the code changes flow from development to a running
-          application in the Kubernetes cluster using Azure DevOps for CI and
-          ArgoCD for CD.
-        </p>
-
-        <div className="mt-10 overflow-x-auto pb-3">
-          <div className="min-w-[1040px]">
-            <div className="relative grid grid-cols-[1.35fr_0.95fr] gap-3">
-              <div className="rounded-2xl border border-dashed border-sky-300 bg-sky-50/50 px-3 py-3">
-                <div className="mb-3 text-center">
-                  <h3 className="text-base font-bold text-sky-600">
-                    CI – Build, Test and Push
-                  </h3>
-                  <p className="text-xs text-sky-600">(Azure DevOps Pipeline)</p>
-                </div>
-
-                <div className="flex items-center">
-                  {[
-                    {
-                      title: "Source Code",
-                      subtitle: "(GitHub)",
-                      detail: "Push code\nto main branch",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-                    },
-                    {
-                      title: "Azure DevOps",
-                      subtitle: "(CI Pipeline)",
-                      detail: "Checkout and Build Docker Images",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg",
-                    },
-                    {
-                      title: "Docker Images",
-                      subtitle: "(vote, result, worker)",
-                      detail: "Build & Tag\n(images with build ID)",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-                    },
-                    {
-                      title: "Azure Container Registry",
-                      subtitle: "(ACR)",
-                      detail: "Push images\nto ACR",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg",
-                    },
-                  ].map((step, index, steps) => (
-                    <div key={step.title} className="flex min-w-0 flex-1 items-center">
-                      <div className="flex h-[178px] w-full flex-col items-center rounded-xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm">
-                        <div className="flex h-[45px] items-center justify-center">
-                          <img src={step.icon} alt="" className="h-10 w-10 object-contain" />
-                        </div>
-                        <h4 className="mt-1 text-[12px] font-bold leading-4 text-slate-950">
-                          {step.title}
-                        </h4>
-                        <p className="mt-0.5 min-h-[18px] text-[11px] leading-4 text-slate-500">
-                          {step.subtitle}
-                        </p>
-                        <div className="mt-auto flex min-h-[55px] w-full items-center justify-center rounded-lg bg-sky-50 px-2 py-1.5 text-[11px] leading-4 text-slate-700">
-                          <span className="whitespace-pre-line">{step.detail}</span>
-                        </div>
-                      </div>
-
-                      {index < steps.length - 1 && (
-                        <div className="flex w-7 shrink-0 items-center justify-center text-xl font-medium text-sky-500">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ACR → Kubernetes manifest update */}
-              <div
-                className="pointer-events-none absolute left-[58.7%] z-20 hidden -translate-x-1/2 text-xl font-semibold text-sky-500 lg:block"
-                style={{ top: "50%" }}
-                aria-hidden="true"
-              >
-                →
-              </div>
-
-              <div className="relative rounded-2xl border border-dashed border-emerald-300 bg-emerald-50/50 px-3 py-3">
-                <div className="mb-3 text-center">
-                  <h3 className="text-base font-bold text-slate-950">
-                    CD – Deploy using GitOps
-                  </h3>
-                  <p className="text-xs text-slate-600">(ArgoCD)</p>
-                </div>
-
-                <div className="flex items-center">
-                  {[
-                    {
-                      title: "Revise k8s yaml",
-                      subtitle: "(Git Repository)",
-                      detail: "Update image tags\nand commit",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-                    },
-                    {
-                      title: "ArgoCD",
-                      subtitle: "(GitOps)",
-                      detail: "Detects changes\nand syncs",
-                      icon: "https://cdn.jsdelivr.net/gh/cncf/artwork@main/projects/argo/icon/color/argo-icon-color.svg",
-                    },
-                    {
-                      title: "Kubernetes Cluster",
-                      subtitle: "(AKS)",
-                      detail: "Deploys updated\napplication",
-                      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg",
-                    },
-                  ].map((step, index, steps) => (
-                    <div key={step.title} className="flex min-w-0 flex-1 items-center">
-                      <div className="flex h-[178px] w-full flex-col items-center rounded-xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm">
-                        <div className="flex h-[45px] items-center justify-center">
-                          <img src={step.icon} alt="" className="h-10 w-10 object-contain" />
-                        </div>
-                        <h4 className="mt-1 text-[12px] font-bold leading-4 text-slate-950">
-                          {step.title}
-                        </h4>
-                        <p className="mt-0.5 min-h-[34px] whitespace-pre-line text-[11px] leading-4 text-slate-500">
-                          {step.subtitle}
-                        </p>
-                        <div className="mt-auto flex min-h-[62px] w-full items-center justify-center rounded-lg bg-emerald-50 px-2 py-2 text-[10px] leading-4 text-slate-700">
-                          <span className="whitespace-pre-line">{step.detail}</span>
-                        </div>
-                      </div>
-
-                      {index < steps.length - 1 && (
-                        <div className="flex w-7 shrink-0 items-center justify-center text-xl font-medium text-emerald-500">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {pipelineSteps.map((step, index) => (
+            <div
+              key={step}
+              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <span className="text-sm font-bold text-sky-600">
+                0{index + 1}
+              </span>
+              <p className="mt-4 leading-7 text-slate-700">{step}</p>
             </div>
+          ))}
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div className="flex items-center gap-3">
+            <GitBranch className="text-sky-600" size={22} />
+            <h3 className="text-lg font-bold">GitOps delivery flow</h3>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-4">
+            {[
+              ["01", "CI builds", "Azure DevOps builds and pushes a new image."],
+              ["02", "Manifest update", "The image tag is updated in the Kubernetes manifest."],
+              ["03", "Git change", "The manifest change is committed to the watched branch."],
+              ["04", "ArgoCD sync", "ArgoCD detects the Git change and reconciles the cluster."],
+            ].map(([number, title, description]) => (
+              <div key={number} className="rounded-xl bg-[#f7f8fa] p-5">
+                <span className="text-xs font-bold text-sky-600">{number}</span>
+                <h4 className="mt-3 font-bold">{title}</h4>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -348,20 +276,28 @@ export default function AzureDevOpsAutomationPage() {
 
         <div className="mt-10 grid gap-6">
           {screenshots.map((image) => (
-            <figure
+            <button
               key={image.src}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className="group block w-full overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:border-sky-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+              aria-label={`Open ${image.label} image`}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-auto w-full object-contain"
-                loading="lazy"
-              />
+              <div className="relative bg-slate-50 p-3 sm:p-5">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="mx-auto h-auto w-full rounded-xl border border-slate-200 object-contain"
+                  loading="lazy"
+                />
+                <span className="pointer-events-none absolute inset-x-0 bottom-6 mx-auto w-fit rounded-full bg-slate-950/80 px-3 py-1.5 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100">
+                  Click to view full image
+                </span>
+              </div>
               <figcaption className="border-t border-slate-200 px-5 py-4 text-sm font-medium text-slate-600">
                 {image.label}
               </figcaption>
-            </figure>
+            </button>
           ))}
         </div>
       </section>
@@ -400,6 +336,31 @@ export default function AzureDevOpsAutomationPage() {
           </div>
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedImage.label}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            aria-label="Close full image"
+          >
+            <X size={26} />
+          </button>
+          <img
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            className="max-h-[92vh] max-w-[96vw] rounded-lg object-contain shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      )}
     </main>
   );
 }

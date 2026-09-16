@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -8,7 +10,33 @@ import {
   LockKeyhole,
   Server,
   UploadCloud,
+  X,
 } from "lucide-react";
+
+import { useEffect, useState } from "react";
+
+const screenshots = [
+  {
+    src: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/04-live-app.png",
+    alt: "Secure Cloud File Vault live application",
+    label: "Live application",
+  },
+  {
+    src: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/06-resource-group.png",
+    alt: "Azure resource group showing Secure Cloud File Vault resources",
+    label: "Azure resource group",
+  },
+  {
+    src: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/05-blob-storage.png",
+    alt: "Azure Blob Storage files container",
+    label: "Blob Storage",
+  },
+  {
+    src: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/01-queue-message.png",
+    alt: "Azure Queue Storage file-processing message",
+    label: "Queue Storage",
+  },
+];
 
 const stack = [
   "Django",
@@ -23,6 +51,20 @@ const stack = [
 ];
 
 export default function SecureCloudFileVaultPage() {
+  const [selectedImage, setSelectedImage] = useState<(typeof screenshots)[number] | null>(null);
+
+  useEffect(() => {
+    if (!selectedImage) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
   return (
     <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950">
@@ -377,93 +419,51 @@ export default function SecureCloudFileVaultPage() {
         </p>
 
         <div className="mt-10 space-y-8">
-          {[
-            {
-              title: "Live application",
-              description:
-                "The Django file-management application running on the Azure VM.",
-              image: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/04-live-app.png",
-              alt: "Secure Cloud File Vault live application",
-            },
-            {
-              title: "Azure resource group",
-              description:
-                "The provisioned Azure resources used to run and secure the application.",
-              image: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/06-resource-group.png",
-              alt: "Azure resource group showing Secure Cloud File Vault resources",
-            },
-            {
-              title: "Blob Storage",
-              description:
-                "An uploaded file stored in the Azure Blob Storage files container.",
-              image: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/05-blob-storage.png",
-              alt: "Azure Blob Storage files container",
-            },
-            {
-              title: "Queue Storage",
-              description:
-                "The upload event message consumed asynchronously by the worker.",
-              image: "https://raw.githubusercontent.com/Brindha-V-C/Secure-Cloud-File-Vault/main/screenshots/01-queue-message.png",
-              alt: "Azure Queue Storage file-processing message",
-            },
-          ].map(({ title, description, image, alt }) => (
-            <figure
-              key={title}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+          {screenshots.map((image) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className="group block w-full overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:border-sky-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+              aria-label={`Open ${image.label} image`}
             >
               <div className="border-b border-slate-200 px-5 py-4 sm:px-6">
-                <h3 className="font-bold text-slate-950">{title}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  {description}
-                </p>
+                <h3 className="font-bold text-slate-950">{image.label}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">Click to view the screenshot in full size.</p>
               </div>
-              <div className="bg-slate-50 p-3 sm:p-5">
-                <img
-                  src={image}
-                  alt={alt}
-                  className="mx-auto h-auto w-full rounded-xl border border-slate-200 object-contain"
-                  loading="lazy"
-                />
+              <div className="relative bg-slate-50 p-3 sm:p-5">
+                <img src={image.src} alt={image.alt} className="mx-auto h-auto w-full rounded-xl border border-slate-200 object-contain" loading="lazy" />
+                <span className="pointer-events-none absolute inset-x-0 bottom-6 mx-auto w-fit rounded-full bg-slate-950/80 px-3 py-1.5 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100">Click to view full image</span>
               </div>
-            </figure>
+            </button>
           ))}
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-950 text-white">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-400">
-                Source
-              </p>
-              <h2 className="mt-3 text-2xl font-bold">
-                Explore the implementation
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                View the pipelines, helper scripts, README, and project
-                history on GitHub.
-              </p>
-            </div>
-
-            <a
-              href="https://github.com/Brindha-V-C/Secure-Cloud-File-Vault"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
-            >
-              <Github size={17} />
-              GitHub Repository
-              <ArrowUpRight size={15} />
-            </a>
-          </div>
-
-          <div className="mt-10 flex items-center gap-2 text-sm text-slate-500">
-            <CheckCircle2 size={16} className="text-sky-400" />
-            Cloud file management, Azure storage, queue processing, and container deployment implemented
-          </div>
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedImage.label}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            aria-label="Close full image"
+          >
+            <X size={26} />
+          </button>
+          <img
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            className="max-h-[92vh] max-w-[96vw] rounded-lg object-contain shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          />
         </div>
-      </section>
+      )}
     </main>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -7,7 +9,10 @@ import {
   GitBranch,
   Server,
   ShieldCheck,
+  X,
 } from "lucide-react";
+
+import { useEffect, useState } from "react";
 
 const screenshots = [
   {
@@ -72,6 +77,24 @@ const flow = [
 ];
 
 export default function SpringBootAppCicdPage() {
+  const [selectedImage, setSelectedImage] = useState<(typeof screenshots)[number] | null>(null);
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
+
   return (
     <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950">
@@ -286,25 +309,61 @@ export default function SpringBootAppCicdPage() {
 
           <div className="mt-10 space-y-8">
             {screenshots.map((shot) => (
-              <figure
+              <button
                 key={shot.src}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-[#f7f8fa] shadow-sm"
+                type="button"
+                onClick={() => setSelectedImage(shot)}
+                className="group block w-full overflow-hidden rounded-2xl border border-slate-200 bg-[#f7f8fa] text-left shadow-sm transition hover:border-sky-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                aria-label={`Open ${shot.label} in full size`}
               >
-                <div className="bg-slate-50 p-2 sm:p-3">
+                <div className="relative bg-slate-50 p-2 sm:p-3">
                   <img
                     src={shot.src}
                     alt={shot.alt}
-                    className="w-full rounded-xl border border-slate-200 bg-white object-contain"
+                    className="w-full rounded-xl border border-slate-200 bg-white object-contain transition group-hover:scale-[1.005]"
                   />
+                  <span className="absolute right-5 top-5 rounded-lg bg-slate-950/80 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
+                    Click to view full image
+                  </span>
                 </div>
                 <figcaption className="px-5 py-4 text-sm font-semibold text-slate-700">
                   {shot.label}
                 </figcaption>
-              </figure>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedImage.label}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-950 shadow-lg transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            aria-label="Close full image"
+          >
+            <X size={22} />
+          </button>
+
+          <div
+            className="relative flex max-h-[92vh] max-w-[96vw] items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="max-h-[92vh] max-w-[96vw] rounded-lg object-contain shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
 
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6">
         <div className="rounded-3xl border border-slate-200 bg-slate-950 px-6 py-10 text-white sm:px-10">
