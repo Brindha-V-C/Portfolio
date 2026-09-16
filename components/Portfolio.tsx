@@ -26,13 +26,13 @@ const skills = [
     items: [
       "Microsoft Azure",
       "VM",
+      "Azure Functions",
+      "App Service",
       "Blob Storage",
       "Queue Storage",
       "VNet",
-      "NSG",
-      "ACR",
       "Load Balancer",
-      "Azure Functions",
+      "Azure Container Registry",
     ],
   },
   {
@@ -41,7 +41,7 @@ const skills = [
     items: [
       "Docker",
       "Jenkins",
-      "Azure DevOps",
+      "Azure DevOps Pipelines",
       "GitHub Actions",
       "Git",
       "CI/CD",
@@ -73,8 +73,9 @@ const projects = [
     title: "Spring Boot App CI/CD",
     description:
       "A multi-stage Jenkins pipeline that automates build, test, package, and deployment for a Spring Boot application, with Docker-based deployment.",
-    technologies: ["Git", "Jenkins", "Docker", "Spring Boot"],
+    technologies: ["Git", "Jenkins", "Docker", "Spring Boot", "SonarQube", "Azure VM"],
     github: "https://github.com/Brindha-V-C/springboot-App-cicd",
+    caseStudy: "/projects/springboot-app-cicd",
   },
   {
     title: "Azure DevOps Automation",
@@ -243,7 +244,7 @@ export default function Portfolio() {
               Education
             </p>
             <h3 className="mt-2 text-xl font-bold">
-              B.E. — Computer Science
+              B.E. - Computer Science
             </h3>
             <p className="mt-2 text-slate-600">
               Velalar College of Engineering and Technology
@@ -343,7 +344,7 @@ export default function Portfolio() {
       <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
         <SectionHeading
           eyebrow="Projects"
-          title="Featured Projects"
+          title="Things I&apos;ve built"
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -403,7 +404,7 @@ export default function Portfolio() {
           <Github className="mx-auto text-slate-500" size={25} />
           <h3 className="mt-3 font-bold">More projects on GitHub</h3>
           <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">
-            These are my three featured projects. Explore my GitHub profile for
+            Explore my GitHub profile for
             additional projects, experiments, and code.
           </p>
           <a
@@ -493,7 +494,7 @@ export default function Portfolio() {
               className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
             >
               <Mail size={17} />
-              Email Me
+              Email
             </a>
 
             <a
