@@ -126,23 +126,23 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f7f8fa] text-slate-900">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-6">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
           <a
             href="#home"
             onClick={() => setMenuOpen(false)}
-            className="whitespace-nowrap text-lg font-bold tracking-tight text-white sm:text-xl"
+            className="whitespace-nowrap text-lg font-bold tracking-tight text-slate-950 sm:text-xl"
           >
             Brindha V C<span className="text-sky-600"></span>
           </a>
 
-          <div className="hidden items-center gap-7 text-sm font-medium text-slate-300 md:flex">
-            <a href="#about" className="transition hover:text-sky-400">About</a>
-            <a href="#experience" className="transition hover:text-sky-400">Experience</a>
-            <a href="#skills" className="transition hover:text-sky-400">Skills</a>
-            <a href="#projects" className="transition hover:text-sky-400">Projects</a>
-            <a href="#certifications" className="transition hover:text-sky-400">Certifications</a>
-            <a href="#contact" className="transition hover:text-sky-400">Contact</a>
+          <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
+            <a href="#about" className="transition hover:text-sky-600">About</a>
+            <a href="#experience" className="transition hover:text-sky-600">Experience</a>
+            <a href="#skills" className="transition hover:text-sky-600">Skills</a>
+            <a href="#projects" className="transition hover:text-sky-600">Projects</a>
+            <a href="#certifications" className="transition hover:text-sky-600">Certifications</a>
+            <a href="#contact" className="transition hover:text-sky-600">Contact</a>
           </div>
 
           <button
@@ -150,14 +150,14 @@ export default function Portfolio() {
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
-            className="rounded-lg p-2 text-sky-400 transition hover:bg-slate-800 md:hidden"
+            className="rounded-lg p-2 text-slate-800 transition hover:bg-slate-200 md:hidden"
           >
             {menuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="border-t border-slate-800 bg-slate-950 px-5 py-1 md:hidden">
+          <div className="border-t border-slate-200 bg-white px-5 py-2 md:hidden">
             <div className="mx-auto flex max-w-6xl flex-col">
               {[
                 ["About", "#about"],
@@ -171,7 +171,7 @@ export default function Portfolio() {
                   key={label}
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-slate-800 py-3 text-sm font-medium text-slate-300 last:border-b-0 hover:text-sky-400"
+                  className="border-b border-slate-100 py-3 text-sm font-medium text-slate-700 last:border-b-0 hover:text-sky-600"
                 >
                   {label}
                 </a>
@@ -181,24 +181,24 @@ export default function Portfolio() {
         )}
       </nav>
 
-      <section id="home" className="mx-auto flex min-h-[calc(100svh-64px)] max-w-6xl items-center px-5 pb-8 pt-6 sm:px-6 sm:pb-12 sm:pt-10 md:min-h-0 md:pb-24 md:pt-32">
-        <div className="grid w-full items-center gap-7 lg:grid-cols-[1fr_360px] lg:gap-16">
+      <section id="home" className="mx-auto max-w-6xl px-5 pb-8 pt-10 sm:px-6 sm:pb-16 sm:pt-16 md:pt-32">
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_360px] lg:gap-16">
           <div className="max-w-4xl">
-            <h1 className="whitespace-nowrap text-[2rem] font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
+            <h1 className="whitespace-nowrap text-[2.15rem] font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
               Hi, I&apos;m Brindha V C
             </h1>
 
-            <p className="mt-4 max-w-3xl text-[1.25rem] font-medium leading-7 text-slate-700 sm:text-2xl sm:leading-relaxed md:text-3xl">
+            <p className="mt-6 max-w-3xl text-[1.45rem] font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-relaxed md:text-3xl">
               Computer Science Graduate building reliable cloud and DevOps
               solutions.
             </p>
 
-            <p className="mt-4 max-w-2xl text-[0.9rem] leading-6 text-slate-500 sm:mt-6 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 text-slate-500 sm:mt-6 sm:text-base md:text-lg">
               I work with Azure, CI/CD, Docker, Python, and modern deployment
               practices to build scalable and dependable software systems.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#projects"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
@@ -217,7 +217,6 @@ export default function Portfolio() {
               <ExternalLink size={16} />
             </a>
           </div>
-
           </div>
 
           <div className="flex justify-center lg:justify-end">
