@@ -17,6 +17,7 @@ import {
   Trophy,
 } from "lucide-react";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const skills = [
@@ -125,23 +126,23 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f7f8fa] text-slate-900">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
           <a
             href="#home"
             onClick={() => setMenuOpen(false)}
-            className="whitespace-nowrap text-lg font-bold tracking-tight text-slate-950 sm:text-xl"
+            className="whitespace-nowrap text-lg font-bold tracking-tight text-white sm:text-xl"
           >
             Brindha V C<span className="text-sky-600"></span>
           </a>
 
-          <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
-            <a href="#about" className="transition hover:text-sky-600">About</a>
-            <a href="#experience" className="transition hover:text-sky-600">Experience</a>
-            <a href="#skills" className="transition hover:text-sky-600">Skills</a>
-            <a href="#projects" className="transition hover:text-sky-600">Projects</a>
-            <a href="#certifications" className="transition hover:text-sky-600">Certifications</a>
-            <a href="#contact" className="transition hover:text-sky-600">Contact</a>
+          <div className="hidden items-center gap-7 text-sm font-medium text-slate-300 md:flex">
+            <a href="#about" className="transition hover:text-sky-400">About</a>
+            <a href="#experience" className="transition hover:text-sky-400">Experience</a>
+            <a href="#skills" className="transition hover:text-sky-400">Skills</a>
+            <a href="#projects" className="transition hover:text-sky-400">Projects</a>
+            <a href="#certifications" className="transition hover:text-sky-400">Certifications</a>
+            <a href="#contact" className="transition hover:text-sky-400">Contact</a>
           </div>
 
           <button
@@ -181,23 +182,23 @@ export default function Portfolio() {
       </nav>
 
       <section id="home" className="mx-auto max-w-6xl px-5 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-24 md:pt-32">
-        <div className="max-w-4xl">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
+          <div className="max-w-4xl">
+            <h1 className="whitespace-nowrap text-[2.15rem] font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
+              Hi, I&apos;m Brindha V C
+            </h1>
 
-          <h1 className="whitespace-nowrap text-[2.15rem] font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
-            Hi, I&apos;m Brindha V C
-          </h1>
+            <p className="mt-6 max-w-3xl text-[1.45rem] font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-relaxed md:text-3xl">
+              Computer Science Graduate building reliable cloud and DevOps
+              solutions.
+            </p>
 
-          <p className="mt-6 max-w-3xl text-[1.45rem] font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-relaxed md:text-3xl">
-            Computer Science Graduate building reliable cloud and DevOps
-            solutions.
-          </p>
+            <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 text-slate-500 sm:mt-6 sm:text-base md:text-lg">
+              I work with Azure, CI/CD, Docker, Python, and modern deployment
+              practices to build scalable and dependable software systems.
+            </p>
 
-          <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 text-slate-500 sm:mt-6 sm:text-base md:text-lg">
-            I work with Azure, CI/CD, Docker, Python, and modern deployment
-            practices to build scalable and dependable software systems.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#projects"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
@@ -215,6 +216,20 @@ export default function Portfolio() {
               View Resume
               <ExternalLink size={16} />
             </a>
+            </div>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white bg-slate-100 shadow-xl sm:h-72 sm:w-72 md:h-75 md:w-75">
+              <Image
+                src="/projects/profile/brindha-profile.png"
+                alt="Brindha V C"
+                fill
+                priority
+                sizes="(max-width: 1023px) 18rem, 20rem"
+                className="object-cover object-top"
+              />
+            </div>
           </div>
         </div>
       </section>

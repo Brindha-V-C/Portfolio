@@ -39,18 +39,18 @@ const stack = [
 export default function AzureDevOpsAutomationPage() {
   return (
     <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-[#f7f8fa]/95 backdrop-blur">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
           <a
             href="/"
-            className="whitespace-nowrap text-lg font-bold tracking-tight text-slate-950 sm:text-xl"
+            className="whitespace-nowrap text-lg font-bold tracking-tight text-white sm:text-xl"
           >
-            Brindha V C<span className="text-sky-600"></span>
+            Brindha V C<span className="text-sky-400"></span>
           </a>
 
           <a
             href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-sky-600"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-sky-400"
           >
             <ArrowLeft size={16} />
             Back to Projects
